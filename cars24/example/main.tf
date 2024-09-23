@@ -1,5 +1,5 @@
 module "eks" {
-  source = "../module/cluster"
+  source = "../modules/cluster"
   name       = "eks-cars24"
   vpc_id     = data.terraform_remote_state.network.outputs.vpc_id
   subnet_ids = flatten([data.terraform_remote_state.network.outputs.public_sub_ids, data.terraform_remote_state.network.outputs.private_sub_ids])
@@ -9,4 +9,15 @@ module "eks" {
   enable_dashboard = true
   enable_calico    = true
 
+
 }
+
+
+
+
+
+
+
+
+
+
