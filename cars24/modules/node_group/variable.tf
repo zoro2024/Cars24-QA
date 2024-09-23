@@ -8,6 +8,22 @@ variable "cluster_name" {
   type        = string
 }
 
+variable "ami_type" {
+  description = "desired ami"
+  type = string
+}
+
+variable "labels" {
+  description = "labels of the node"
+  type = map(string)
+}
+
+variable "security_group_ids" {
+  description = "node"
+  type = list(string)
+  
+}
+
 variable "subnet_ids" {
   description = "List of subnet IDs"
   type        = list(string)

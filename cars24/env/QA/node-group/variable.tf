@@ -13,6 +13,16 @@ variable "desired_size" {
   type        = string
 }
 
+variable "labels" {
+  description  =  "desired label of the node"
+  type         =  map(string)
+}
+
+variable "ami_type" {
+  description = "desired ami of node"
+  type        = string
+}
+
 variable "max_size" {
   description = "max size of node group"
   type        = string
