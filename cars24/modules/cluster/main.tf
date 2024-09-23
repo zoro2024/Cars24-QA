@@ -1,9 +1,11 @@
 
+
+
 # Cluster Security Group
 resource "aws_security_group" "cluster" {
   name        = "${var.name}-cluster"
   description = "Cluster communication with worker nodes"
-  vpc_id     = data.terraform_remote_state.network.outputs.vpc_id
+  vpc_id     =  var.vpc_id
 
   egress {
     from_port   = 0
@@ -31,7 +33,7 @@ resource "aws_security_group_rule" "cluster-ingress-workstation-https" {
 resource "aws_security_group" "node" {
   name        = "${var.name}-node"
   description = "Security group for all nodes in the cluster"
-  vpc_id     = data.terraform_remote_state.network.outputs.vpc_id
+  vpc_id     = var.vpc_id
 
   egress {
     from_port   = 0
@@ -104,7 +106,7 @@ resource "aws_eks_cluster" "cluster" {
   role_arn = aws_iam_role.cluster.arn
 
   vpc_config {
-    subnet_ids              = flatten([data.terraform_remote_state.network.outputs.public_sub_ids, data.terraform_remote_state.network.outputs.private_sub_ids])
+    subnet_ids              = var.subnet_ids
     security_group_ids      = [aws_security_group.cluster.id]
     endpoint_private_access = var.cluster_private_access
     endpoint_public_access  = var.cluster_public_access
