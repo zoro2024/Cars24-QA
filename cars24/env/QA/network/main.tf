@@ -1,5 +1,5 @@
 module "network-skeleton" {
-  source                                       = "../modules/network_skeleton"
+  source                                       = "../../../modules/network_skeleton"
   vpc_cidr_block                               = var.vpc_cidr_block
   instance_tenancy                             = var.instance_tenancy
   vpc_name                                     = var.vpc_name
